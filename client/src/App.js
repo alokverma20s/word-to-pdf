@@ -1,10 +1,8 @@
 import './App.css';
 import { useState } from 'react';
-import axios from 'axios';
+import { convert, upload } from './api';
 
 function App() {
-
-  const backendUrl = process.env.REACT_APP_BACKEND_URL
 
   const [file, setFile] = useState(null);
   const [password, setPassword] = useState('');
@@ -43,22 +41,12 @@ function App() {
     formData.append('password', password);
 
     try {
-      // Upload the .docx file
-      console.log('Uploading file');
-      
-      const uploadResponse = await axios.post(backendUrl+'/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('File uploaded');
+      // Upload the .docx file      
+      const uploadResponse = await upload(formData);
 
       // Now call the convert API
       const { filePath } = uploadResponse.data;
-      const convertResponse = await axios.post(backendUrl+'/api/convert', {
-        filePath,
-        password,
-      });
+      const convertResponse = await convert({ filePath, password });
 
       // Set the download link for the converted PDF
       setDownloadLink(convertResponse?.data?.downloadUrl);
