@@ -9,6 +9,8 @@ import fs from "fs";
 import dotenv from "dotenv";
 dotenv.config();
 
+const backendUrl = process.env.BACKEND_URL;
+
 const port = process.env.PORT || 4000;
 
 function scheduleFileDeletion(filePath, delay = 5 * 60 * 1000) {
@@ -84,9 +86,7 @@ export const convertTopdf = async (req, res) => {
           fs.unlinkSync(filePath);
           res.status(200).json({
             message: "File converted successfully.",
-            downloadUrl: `http://localhost:${port}/download/${basename(
-              finalPdfPath
-            )}`,
+            downloadUrl: `${backendUrl}/download/${basename(finalPdfPath)}`,
           });
         }
       );
@@ -95,7 +95,7 @@ export const convertTopdf = async (req, res) => {
       scheduleFileDeletion(filePath);
       res.status(200).json({
         message: "File converted successfully.",
-        downloadUrl: `http://localhost:${port}/download/${basename(pdfPath)}`,
+        downloadUrl: `${backendUrl}/download/${basename(pdfPath)}`,
       });
     }
   } catch (err) {

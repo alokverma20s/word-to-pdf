@@ -31,6 +31,11 @@ function App() {
       alert('Please upload a file');
       return;
     }
+    if(file.name.split('.').pop() !== 'docx'){
+      alert('Please upload a .docx file');
+      setFile(null);
+      return;
+    }
 
     setLoading(true);
     setDownloadLink('');
