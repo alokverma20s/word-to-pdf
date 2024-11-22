@@ -26,12 +26,10 @@ app.use('/api', uploadRoutes);
 app.use('/download', downloadRoutes);
 
 
-app.get("/", (_, res) => {
-  return res.status(200).json({
-    success: true,
-    message: "Hello From the server.",
-  });
+app.get('/', (_, res)=>{
+  res.send("This is a Word to pdf API");
 });
+
 
 
 // Start the server
