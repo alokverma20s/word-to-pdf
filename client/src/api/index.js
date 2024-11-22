@@ -12,7 +12,7 @@ export const upload = (formData)=> {
     const headers={
         'Content-Type': 'multipart/form-data',
     }
-    return API.post('/api/upload', formData, { headers });
+    return API.post('/upload', formData, { headers });
 };
 
-export const convert = (data) => API.post('/api/convert', data);
+export const convert = (data) => API.post('/convert', data);

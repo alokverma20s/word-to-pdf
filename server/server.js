@@ -22,7 +22,7 @@ app.use(cors(
 import uploadRoutes from "./routes/uploads.js";
 import downloadRoutes from "./routes/download.js";
 
-app.use('/api', uploadRoutes);
+app.use('/', uploadRoutes);
 app.use('/download', downloadRoutes);
 
 
