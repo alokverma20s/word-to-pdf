@@ -1,6 +1,13 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import https from "https";
+// import fs from 'fs';
+
+// const options = {
+//   key: fs.readFileSync("server.key"),
+//   cert: fs.readFileSync("server.cert"),
+// };
 
 // Your existing code
 
@@ -24,6 +31,6 @@ app.get("/", (_, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+https.createServer(options, app).listen(4000, () => {
+  console.log('Server running at https://localhost:4000/');
 });
