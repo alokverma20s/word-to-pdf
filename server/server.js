@@ -2,12 +2,12 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import https from "https";
-// import fs from 'fs';
+import fs from 'fs';
 
-// const options = {
-//   key: fs.readFileSync("server.key"),
-//   cert: fs.readFileSync("server.cert"),
-// };
+const options = {
+  key: fs.readFileSync("server.key"),
+  cert: fs.readFileSync("server.cert"),
+};
 
 // Your existing code
 
